@@ -14,12 +14,12 @@ int main(int argc, char *argv[]) {
     printf("This is the User process (id = %d).\n", getpid());
     printf("User: Please, enter: value1 operation value2\n");
 
-    int value1, value2;
-    char operation;
-    scanf("%d %c %d", &value1, &operation, &value2);
+    int num1, num2;
+    char op;
+    scanf("%d %c %d", &num1, &op, &num2);
 
-    dprintf(write_fd, "%d %c %d\n", value1, operation, value2);
-    printf("User Sending the following: %d %c %d on FD %d\n", value1, operation, value2, write_fd);
+    dprintf(write_fd, "%d %c %d\n", num1, op, num2);
+    printf("User Sending the following: %d %c %d on FD %d\n", num1, op, num2, write_fd);
 
     int result;
     read(read_fd, &result, sizeof(int));

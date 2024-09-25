@@ -14,19 +14,19 @@ int main(int argc, char *argv[]) {
     printf("This is the Calculator process (id = %d).\n", getpid());
     printf("Calculator Waiting to receive from FD %d\n", read_fd);
 
-    int value1, value2, result;
-    char operation;
+    int num1, num2, result;
+    char op;
     char buffer[100];
     read(read_fd, buffer, sizeof(buffer));
-    sscanf(buffer, "%d %c %d", &value1, &operation, &value2);
+    sscanf(buffer, "%d %c %d", &num1, &op, &num2);
 
-    printf("Calculator received the following: %d %c %d from FD %d\n", value1, operation, value2, read_fd);
+    printf("Calculator received the following: %d %c %d from FD %d\n", num1, op, num2, read_fd);
 
-    switch (operation) {
-        case '+': result = value1 + value2; break;
-        case '-': result = value1 - value2; break;
-        case '*': result = value1 * value2; break;
-        case '/': result = value1 / value2; break;
+    switch (op) {
+        case '+': result = num1 + num2; break;
+        case '-': result = num1 - num2; break;
+        case '*': result = num1 * num2; break;
+        case '/': result = num1 / num2; break;
         default:
             fprintf(stderr, "Invalid operation\n");
             exit(1);
