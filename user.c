@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <write_fd> <read_fd>\n", argv[0]);
+        printf("Usage: %s <write_fd> <read_fd>\n", argv[0]);
         exit(1);
     }
 
@@ -18,7 +19,9 @@ int main(int argc, char *argv[]) {
     char op;
     scanf("%d %c %d", &num1, &op, &num2);
 
-    dprintf(write_fd, "%d %c %d\n", num1, op, num2);
+    char buffer[100];
+    int len = snprintf(buffer, sizeof(buffer), "%d %c %d\n", num1, op, num2);
+    write(write_fd, buffer, len);
     printf("User Sending the following: %d %c %d on FD %d\n", num1, op, num2, write_fd);
 
     int result;
