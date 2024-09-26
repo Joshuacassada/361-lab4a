@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     int read_fd = atoi(argv[2]);
 
     printf("This is the User process (id = %d).\n", getpid());
-    printf("User: Please, enter: value1 operation value2\n");
+    printf("\t\tUser: Please, enter: value1 operation value2\n");
 
     int num1, num2;
     char op;
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     char arg[MAX_ARGS];
     int len = snprintf(arg, sizeof(arg), "%d %c %d\n", num1, op, num2);
     write(write_fd, arg, len);
-    printf("User Sending the following: %d %c %d on FD %d\n", num1, op, num2, write_fd);
+    printf("\t\tUser Sending the following: %d %c %d on FD %d\n", num1, op, num2, write_fd);
 
     int result;
     read(read_fd, &result, sizeof(result));

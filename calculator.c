@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     read(read_fd, arg, sizeof(arg));
     sscanf(arg, "%d %c %d", &num1, &op, &num2);
 
-    printf("Calculator received the following: %d %c %d from FD %d\n", num1, op, num2, read_fd);
+    printf("\t\tCalculator received the following: %d %c %d from FD %d\n", num1, op, num2, read_fd);
 
     switch (op) {
         case '+': result = num1 + num2; break;

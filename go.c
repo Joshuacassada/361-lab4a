@@ -16,6 +16,7 @@ int main() {
     printf("\t\tUser-to-Calculator Request pipe: read=%d write=%d\n", req_pipe[0], req_pipe[1]);
     printf("\t\tCalculator-to-User Reply pipe: read=%d write=%d\n", reply_pipe[0], reply_pipe[1]);
 
+
     pid_t user_pid = fork();
     if (user_pid == 0) {
         close(req_pipe[0]);
@@ -46,10 +47,10 @@ int main() {
     close(reply_pipe[1]);
 
     printf("\nGo is now waiting for User to terminate\n");
-    waitpid(user_pid, NULL, 0);
+    wait(NULL);
     printf("\nGo is now waiting for Calculator to terminate\n");
-    waitpid(calc_pid, NULL, 0);
-    printf("The Go process has terminated\n");
+    wait(NULL);
+    printf("\nThe Go process has terminated\n");
 
     return 0;
 }
